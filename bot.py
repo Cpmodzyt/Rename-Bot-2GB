@@ -5,6 +5,11 @@ from pyrogram.raw.all import layer
 from config import Config
 from aiohttp import web
 from route import web_server
+import pyromod
+import pyrogram.utils
+
+pyrogram.utils.MIN_CHANNEL_ID = -1009147483647
+
 
 class Bot(Client):
 
@@ -30,6 +35,9 @@ class Bot(Client):
             await app.setup()       
             await web.TCPSite(app, "0.0.0.0", 8000).start()     
         print(f"{me.first_name} Is Started.....✨️")
+        for id in Config.ADMIN:
+            try: await self.send_message(id, f"**{me.first_name}  Is Started...**")                                
+            except: pass
         
         if Config.LOG_CHANNEL:
             try:

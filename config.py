@@ -1,4 +1,7 @@
-import os, time
+import os, time, re
+id_pattern = re.compile(r'^.\d+$')
+
+
 
 class Config(object):
     # pyro client config
@@ -13,7 +16,7 @@ class Config(object):
     # other configs
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "")
-    ADMIN = int(os.environ.get("ADMIN", ""))
+    ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '').split()]
 
     # channels logs
     FORCE_SUB   = os.environ.get("FORCE_SUB", "") 
@@ -84,6 +87,16 @@ Maintained By : <a href=https://t.me/Itzmecp>Itzmecp</a></b>"""
 <b>Contact on Telegram</b> 🌸 : <a href=https://t.me/Itzmecp><b>Itzmecp</b></a>
 
 <blockquote><a href=https://t.me/itzmecp><b>#FilmZone</b></a> | <a href=https://t.me/FilmZone_Official><b>@FilmZone_Official</b></a></blockquote>"""
+
+
+    SEND_METADATA = """<b><u>🖼️  HOW TO SET CUSTOM METADATA</u></b>
+
+For Example :-
+
+<code>-map 0 -c:s copy -c:a copy -c:v copy -metadata title="Encoded By :- @Madflix_Bots" -metadata author="@JishuDeveloper" -metadata:s:s title="Subtitled By :- @Madflix_Bots" -metadata:s:a title="By :- @Madflix_Bots" -metadata:s:v title="Encoded By :- @Madflix_Bots"</code>
+
+💬 For Any Help Contact @CallAdminRobot
+"""
 
 
 

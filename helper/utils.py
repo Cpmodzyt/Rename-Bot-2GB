@@ -1,4 +1,4 @@
-import math, time
+import math, time, re, os
 from datetime import datetime
 from pytz import timezone
 from config import Config, Txt 
@@ -79,6 +79,41 @@ async def send_log(b, u):
             f"<b><u>𝖭𝖾𝗐 𝖴𝗌𝖾𝗋 𝖲𝗍𝖺𝗋𝗍𝖾𝖽 𝖳𝗁𝖾 𝖡𝗈𝗍</u></b> \n\n<b>𝖴𝗌𝖾𝗋 𝖬𝖾𝗇𝗍𝗂𝗈𝗇</b> : {u.mention}\n<b>𝖴𝗌𝖾𝗋 𝖨𝖣</b> : `{u.id}`\n<b>𝖥𝗂𝗋𝗌𝗍 𝖭𝖺𝗆𝖾</b> : {u.first_name} \n<b>𝖫𝖺𝗌𝗍 𝖭𝖺𝗆𝖾</b> : {u.last_name} \n<b>𝖴𝗌𝖾𝗋 𝖭𝖺𝗆𝖾</b> : @{u.username} \n<b>𝖴𝗌𝖾𝗋 𝖫𝗂𝗇𝗄</b> : <a href='tg://openmessage?user_id={u.id}'>𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾</a>\n\n<b>𝖣𝖺𝗍𝖾</b> : {date}\n<b>𝖳𝗂𝗆𝖾</b> : {time}"
         )
         
+
+
+
+def add_prefix_suffix(input_string, prefix='', suffix=''):
+    pattern = r'(?P<filename>.*?)(\.\w+)?$'
+    match = re.search(pattern, input_string)
+    if match:
+        filename = match.group('filename')
+        extension = match.group(2) or ''
+        if prefix == None:
+            if suffix == None:
+                return f"{filename}{extension}"
+            return f"{filename} {suffix}{extension}"
+        elif suffix == None:
+            if prefix == None:
+               return f"{filename}{extension}"
+            return f"{prefix}{filename}{extension}"
+        else:
+            return f"{prefix}{filename} {suffix}{extension}"
+
+
+    else:
+        return input_string
+
+
+
+def makedir(name: str):
+    """
+    Create a directory with the specified name.
+    If a directory with the same name already exists, it will be removed and a new one will be created.
+    """
+
+    if os.path.exists(name):
+        shutil.rmtree(name)
+    os.mkdir(name)
 
 
 
