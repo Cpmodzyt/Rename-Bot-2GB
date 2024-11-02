@@ -93,9 +93,9 @@ Maintained By : <a href=https://t.me/Itzmecp>Itzmecp</a></b>"""
 
 For Example :-
 
-<code>-map 0 -c:s copy -c:a copy -c:v copy -metadata title="Encoded By :- @Madflix_Bots" -metadata author="@JishuDeveloper" -metadata:s:s title="Subtitled By :- @Madflix_Bots" -metadata:s:a title="By :- @Madflix_Bots" -metadata:s:v title="Encoded By :- @Madflix_Bots"</code>
+<code>By :- @Madflix_Bots</code>
 
-💬 For Any Help Contact @CallAdminRobot
+💬 For Any Help Contact @MadflixOfficials
 """
 
 
